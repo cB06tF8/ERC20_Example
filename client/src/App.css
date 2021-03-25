@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+  background-image: url('https://images.template.net/wp-content/uploads/2016/12/05144945/Free-Vector-Coffee-Cup-Logo.jpg');
+  background-size: 30%;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-color:#230407;
+  color: wheat;
+  font-weight: 50;
+}
+
+.App-whiteText {
+  color: white;
+}
+.App-table {
+  margin-left: auto;
+  margin-right: auto; 
+}
+.AppAlignLeft {
+  text-align: left;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
