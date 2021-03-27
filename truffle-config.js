@@ -23,7 +23,8 @@ module.exports = {
       provider: function() {
         return new HDWalletProvider(process.env.MNEMONIC, "https://goerli.infura.io/v3/e4bec38e98f544abb8f2e7485dd55064", AccountIndex)
       },
-      network_id: 5
+      network_id: 5,
+      gas: 4600000
     },
     ropsten_infura: {
       provider: function() {
