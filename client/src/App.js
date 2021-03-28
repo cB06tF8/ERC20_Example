@@ -7,7 +7,7 @@ import getWeb3 from "./getWeb3";
 import "./App.css";
 
 class App extends Component {
-  state = { loaded: false, kycAddress: "0x123...", TokenSaleAddress: null, UserTokens: 0};
+  state = { loaded: false, kycAddress: "0x123...", TokenSaleAddress: null, userTokens: 0, totalMintedTokens: 0};
 
   componentDidMount = async () => {
     try {
@@ -44,7 +44,7 @@ class App extends Component {
         * to updateUserTokens 
       */
       this.listenToTokenTransfer();      
-      this.setState({loaded: true, TokenSaleAddress: MyTokenSale.networks[this.networkId].address}, this.updateUserTokens);
+      this.setState({loaded: true, TokenSaleAddress: MyTokenSale.networks[this.networkId].address}, this.updateTotalAndUserTokens);
       
     } catch (error) {      
       alert(
@@ -72,16 +72,17 @@ class App extends Component {
   }
 
   /** @dev update to the number of tokens handler (for account[0])  */
-  updateUserTokens = async () => {
+  updateTotalAndUserTokens = async () => {
     /** @dev Note: "call()" is a reading operation, whereas "send()" is a writing operation */
     let userTokens = await this.TokenInstance.methods.balanceOf(this.accounts[0]).call();
-    this.setState({userTokens: userTokens});
+    let totalTokens = await this.TokenInstance.methods.totalSupply().call();
+    this.setState({userTokens: userTokens, totalMintedTokens: totalTokens});
   }
     
   /** @dev token transfer event listener */
   listenToTokenTransfer = () => {
     // IMPORTANT: this will only listen for when the "to" param if the event is set to accounts[0]
-    this.TokenInstance.events.Transfer({to: this.accounts[0]}).on("data", this.updateUserTokens);
+    this.TokenInstance.events.Transfer({to: this.accounts[0]}).on("data", this.updateTotalAndUserTokens);
   }
 
   /** @dev token purchase handler   */
@@ -107,7 +108,8 @@ class App extends Component {
         </table>
         <h2>Buy Tokens</h2>
         <p>If you would like to purchase tokens manually, send wei this address: {this.state.TokenSaleAddress} </p>
-        <p>Current Token amount: {this.state.userTokens} CAPPU</p>
+        <p>Total Tokens issued: {this.state.totalMintedTokens} CAPPU </p>
+        <p>Tokens purchased by the current account displayed (refresh to display): {this.state.userTokens} CAPPU</p>
         <button type="button" onClick={this.handleBuyTokens}>Buy Single Tokens</button>
         <p><br /></p>
       </div>

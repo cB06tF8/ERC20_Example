@@ -1,27 +1,28 @@
 pragma solidity ^0.6.0;
 
 import "./Crowdsale.sol";
+import "./MintedCrowdsale.sol";
 import "./KycContract.sol";
 
 /** @title MyTokenSale contract
     * @author Chris Ball
     * @notice This contract handles the Crowdsale of MyToken ERC20 tokens      
 */
-contract MyTokenSale is Crowdsale {
+contract MyTokenSale is MintedCrowdsale {
 
         KycContract kyc;
 
-    constructor(
+        constructor(
         uint256 rate,    // rate in TKNbits
         address payable wallet,
         IERC20 token,
         KycContract _kyc
     )
+        MintedCrowdsale() 
         Crowdsale(rate, wallet, token)
         public
     {
         kyc = _kyc;
-
     }
 
     /** @notice function validates whether the address purchasing tokens is currently whitelisted 
