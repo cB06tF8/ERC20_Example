@@ -1,6 +1,6 @@
 # ERC20_Example
 
-This project is a simple example of an ERC20 token. It was put together as part of my early education in Solidty and as such should be treated as a learning project and not be considered production ready. 
+This project is a simple example of an ERC20 token. It was put together as part of my early education in Solidity and as such should be treated as a learning project and should not be considered production ready. 
 
 ## How To Use
 To test using the UI, add your Metamask mnemonic to the .env file
