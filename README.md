@@ -1,9 +1,6 @@
 # ERC20_Example
 
-This project was done for the Udemy course "Ethereum Blockchain Developer Bootcamp With Solidity (2021)" which can be found at
-https://www.udemy.com/course/blockchain-developer/
-
-As such, it is a learning project and should not be considered production ready. 
+This project is a simple example of an ERC20 token. It was put together as part of my early education in Solidty and as such should be treated as a learning project and not be considered production ready. 
 
 ## How To Use
 To test using the UI, add your Metamask mnemonic to the .env file
